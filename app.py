@@ -254,9 +254,9 @@ if __name__ == '__main__':
         print("Y agregue el ejecutable a su PATH de Windows")
         print("="*60 + "\n")
     
-    # Detectar si estamos en producción (Railway/Fly.io) o desarrollo local
+    # Detectar si estamos en producción (Render/Railway/Fly.io) o desarrollo local
     import os
-    is_production = os.environ.get('RAILWAY_ENVIRONMENT') or os.environ.get('FLY_APP_NAME')
+    is_production = os.environ.get('RENDER') or os.environ.get('RAILWAY_ENVIRONMENT') or os.environ.get('FLY_APP_NAME')
     host = '0.0.0.0' if is_production else '127.0.0.1'
     port = int(os.environ.get('PORT', 8080))
     
