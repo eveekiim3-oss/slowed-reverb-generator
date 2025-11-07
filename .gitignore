@@ -1,0 +1,9 @@
+ffmpeg/
+uploads/
+processed/
+__pycache__/
+*.pyc
+.git/
+*.7z
+*.zip
+*.rar

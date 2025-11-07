@@ -1,0 +1,7 @@
+ffmpeg/
+uploads/
+processed/
+__pycache__/
+*.pyc
+*.bat
+txt.txt

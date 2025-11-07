@@ -1,0 +1,28 @@
+### Objetivo
+Crear un servidor web local que replique exactamente la funcionalidad de https://slowedreverb.com/, un generador de efectos "slowed + reverb" para archivos de audio. El servidor debe permitir subir archivos MP3 (u otros formatos de audio compatibles), aplicar efectos de ralentización (slowed) y reverberación (reverb) con opciones ajustables (por ejemplo, porcentaje de slowdown, intensidad de reverb), previsualizar el audio procesado en el navegador, y descargar el archivo resultante en MP3. Debe ser 100% funcional, sin errores, y accesible en 127.0.0.1:8080 (localhost:8080, solo accesible desde la misma máquina). Usar la carpeta C:\Users\Administrator\Downloads\Music para probar con un archivo MP3 de ejemplo (elegir uno existente, procesarlo y proporcionar evidencia de los efectos aplicados, como antes/después). Incluir scripts BAT para iniciar y detener el servidor. El objetivo final es un proyecto auto-contenido que funcione inmediatamente, con todas las instalaciones automatizadas o guiadas, y una prueba completa antes de entregar.
+
+### Contexto
+El usuario necesita un clon local auto-hospedado de https://slowedreverb.com/, que es una herramienta en línea para aplicar efectos de "slowed + reverb" a música, popular para remixes en redes sociales. El servidor debe manejar subidas de archivos de audio (MP3 principal, pero soporta WAV, OGG si es posible), procesar los efectos en el backend, permitir ajustes (e.g., slowdown de 0.5x a 0.8x, reverb con parámetros como decay, mix), reproducir una vista previa en el navegador usando HTML5 audio, y ofrecer descarga directa. Se utilizará Python con Flask para el servidor web, pydub (o similar) para manipulación de audio, y FFmpeg para efectos avanzados como reverb (ya que pydub lo integra). Probar con un MP3 real de la carpeta especificada para verificar los efectos (e.g., comparar duración y sonido original vs. procesado). Incluir manejo de errores (e.g., archivos inválidos, límites de tamaño), y asegurar que no haya dependencias faltantes al ejecutar.
+
+### Requisitos
+- Tecnologías: Usar Python 3.x, Flask para el servidor web, pydub para procesamiento de audio, FFmpeg para efectos (instalar automáticamente o guiar). Instalar todas las dependencias necesarias automáticamente en el código (usar subprocess para verificar e instalar paquetes pip como flask, pydub; descargar e instalar FFmpeg si no está presente, asumiendo Windows). Incluir instructions manuales como respaldo (e.g., pip install flask pydub, y enlace para FFmpeg).
+- Funcionalidades:
+  - Interfaz web: Página principal con formulario para subir archivo de audio, sliders o inputs para ajustar slowdown (e.g., velocidad 70-90% del original) y reverb (e.g., intensidad baja/media/alta o parámetros numéricos), botón para procesar.
+  - Procesamiento: Aplicar slowdown (ralentizar el audio sin cambiar pitch si es posible, o con cambio para efecto "slowed"), agregar reverb usando FFmpeg (e.g., af=areverb), generar archivo temporal procesado.
+  - Vista previa: Reproducir el audio original y procesado en el navegador con <audio> tags.
+  - Descarga: Enlace directo para descargar el MP3 procesado, con nombre como "original_slowed_reverb.mp3".
+  - Soporte: Archivos hasta 100MB, solo audio (validar), manejar playlists o múltiples archivos si el sitio original lo hace (investigar, pero mínimo singles).
+  - Almacenamiento: Usar carpeta temporal para procesados, limpiar automáticamente después de descarga.
+  - Puerto: Escuchar en 127.0.0.1:8080 para acceso solo desde localhost.
+  - BAT scripts: Crear start.bat (ejecutar python app.py), stop.bat (matar proceso en puerto 8080 usando netstat/taskkill en Windows).
+  - Validaciones: Manejar errores como subidas fallidas, efectos no aplicables, sin FFmpeg; mostrar mensajes en la web.
+- Prueba: Ejecutar el servidor localmente, subir un MP3 de C:\Users\Administrator\Downloads\Music (e.g., elegir uno como "example.mp3"), aplicar efectos (e.g., 80% speed + medium reverb), verificar preview, descargar, y comparar (e.g., duración original vs. extendida, sonido con eco). Incluir logs, capturas o descripciones de antes/después (e.g., "Original: 3min, Procesado: 3:45min con reverb audible").
+- Otros: Código limpio, comentado, con manejo de excepciones. No incluir extras como registro de usuarios. Asegurar compatibilidad con Windows (ruta de carpeta dada).
+
+### Entrega Esperada
+- Código fuente completo en Python (app.py principal, templates HTML si Flask los usa).
+- Archivos BAT: start.bat y stop.bat con comandos Windows-specific.
+- Requirements.txt o script de instalación para dependencias (pip install -r requirements.txt).
+- Instrucciones paso a paso: Cómo instalar FFmpeg (descarga desde sitio oficial, agregar a PATH), pip install, ejecutar start.bat, acceder a http://127.0.0.1:8080 o http://localhost:8080, probar con el MP3 especificado.
+- Evidencia de prueba: Logs de consola, capturas de pantalla de la web (subida, preview, descarga), comparación de archivos (e.g., "Efectos aplicados: audio ralentizado y con reverb, verificado en reproductor").
+- El proyecto debe ser auto-contenido: ZIP o carpeta con todo, funcionar sin errores al ejecutar start.bat. Depurar cualquier issue antes de entregar.
