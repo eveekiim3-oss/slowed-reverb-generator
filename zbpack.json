@@ -1,0 +1,5 @@
+{
+  "build_command": "pip install -r requirements.txt",
+  "start_command": "python app.py",
+  "install_cmd": "apt-get update && apt-get install -y ffmpeg"
+}
